@@ -4,33 +4,41 @@ int Search(int arr[], int Target, int size)
 {
 
 	int Start = 0;		//Start index
-	int End = size;	//End
+	int End = size-1;	//End
 
 	for (int i=0;i <= size;i++)
 	{
-		int middle = (End+Start)/2;		//the middle of the the array
+		int mid = (End+Start)/2;		//the mid of the the array
 
-		if (arr[middle] == Target)		//if the Target is in the middle 
-		{
-			printf("Founded index:%i\n",middle);	
-			return 0;
+		if (arr[mid] == Target)		//if the Target is in the mid 
+		{	
+			return mid;
 		}
-		else if (Target < arr[middle])	//if the target less then the middle we update the End for be the middle
+		else if (Target < arr[mid])	//if the target less then the mid we update the End for be the mid
 		{
-			End = middle;
+			End = mid;
 		}
-		else			//if the target geater then the middle we update the Start for be the middle
+		else			//if the target geater then the mid we update the Start for be the mid
 		{
-			Start = middle;
+			Start = mid+1;
 		}
 	}
+	return -1;
 }
 
 int main(int argc, char const *argv[])
 {
-	int arr[] = {1, 2, 3, 4, 5, 6, 7}; 		//must be sorted
+	int arr[] = {1, 2, 3, 4, 5, 6, 7, 45, 134}; 		//must be sorted
 	int size = sizeof(arr)/sizeof(arr[0]);  	//the size of the array
 
-	Search(arr, 5, size);
-	return 0;
+	int result = Search(arr, 2, size);
+
+	if (result != -1)
+	{
+		printf("Founded in index :%i\n", result);
+	}
+	else
+	{
+		printf("not found\n");
+	}
 }
